@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>    
+
+<div th:replace="common/head"></div>
+
+<style>
+    #abcd {
+        border: 3px solid;
+    }
+
+    .table {
+        max-width: 80%;
+    }
+</style>
+
+<body>
+    <br><br><br>
+
+    <h1 style="text-align: center">관리자 페이지</h1>
+    <hr>
+    <div>
+        <div  class="btn-group" style="width: 100%; display: flex; justify-content: space-evenly;">
+            <button type="button" class="btn btn-lg" id="aaa">사용자 목록</button>
+            <button type="button" class="btn btn-lg" id="bbb">플로깅활동 목록</button>
+            <button type="button" class="btn btn-lg" id="ccc">댓글 목록</button>
+        </div>
+    </div>
+    <br><br><br>
+    <div style="display: flex; justify-content: center;">
+        <table class="table" id="v"></table>
+        
+        <!-- <div id="vv"></div> -->
+    </div>
+
+    
+    <script src="http://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        const userBtn = document.getElementById(aaa);
+        aaa.addEventListener("click", () => {
+
+            const data = axios({
+                url: 'adminUser',
+                method: 'get',
+            });
+            data.then((res) => {
+                console.log(res);
+                const userdata = res;
+
+                let usercode = "<table id='abcd' border=1px;>";
+                usercode += "<tr><th>이메일</th><th>닉네임</th></tr>"
+                const userlist = userdata.data;
+                console.log(userlist);
+                for (let key in userlist) {
+                    const abc = userlist[key];
+                    const email = abc.email;
+                    const nickname = abc.nickname;
+                    const userid = abc.id;
+                    // const desc = abc.description;
+                    // const publishedAt = abc.pubDate;
+                    usercode += `<tr>`
+                    usercode += `<td>${email}</td>`;
+                    usercode += `<td>${nickname}</td>`;
+                    // usercode += `<td><a href="/delete_activity(id=${id})"><button type="button" class="btn btn-danger">탈퇴</button></a></td>`;
+                    // usercode += `<td><a href="/delete_activity(id=${id})">탈퇴</a></td>`;
+                    usercode += `</tr>`;
+                }
+                usercode += "</table>"
+                document.getElementById("v").innerHTML = usercode;
+            })
+        });
+    </script>
+    <script>
+        const activityBtn = document.getElementById(bbb);
+        bbb.addEventListener("click", () => {
+
+            const data = axios({
+                url: 'adminActivity',
+                method: 'get',
+            });
+            data.then((res) => {
+                console.log(res);
+                const activitydata = res;
+
+                let activitycode = "<table id='defg' border=5px;>";
+                    activitycode += "<tr><th>작성날짜</th><th>플로깅이름</th><th>플로깅거리</th><th>플로깅시간</th><th>플로깅메모</th><th>공개여부</th><th>삭제하기</th></tr>"
+                const activitylist = activitydata.data;
+                console.log(activitylist);
+                for (let key in activitylist) {
+                    const def = activitylist[key];
+                    var dt = new Date(def.createDate.substring(0, def.createDate.lastIndexOf("+")) + 'Z');
+                    console.log(dt.toLocaleString());
+                    console.log(dt.getFullYear(), dt.getMonth(), dt.getDate());
+                    const createDate = dt.getFullYear()+'년 '+(dt.getMonth()+1)+'월 '+dt.getDate()+'일  '+dt.getHours()+' : '+dt.getMinutes();
+                    const actName = def.actName;
+                    const actDistance = def.actDistance;
+                    const actTime = def.actTime;
+                    const actMemo = def.actMemo;
+                    const visibility = def.visibility;
+                    const actid = def.id;
+                    activitycode += `<tr>`
+                    activitycode += `<td>${createDate}</td>`;
+                    activitycode += `<td>${actName}</td>`;
+                    activitycode += `<td>${actDistance}</td>`;
+                    activitycode += `<td>${actTime}</td>`;
+                    activitycode += `<td>${actMemo}</td>`;
+                    // activitycode += `<td>${visibility}</td>`;
+                    if(`${visibility}` == 0)  {
+                        activitycode += `<td>비공개</td>`
+                    }
+                    if(`${visibility}` == 1) {
+                        activitycode += `<td>공개중</td>`
+                    }
+
+                    // activitycode += `<td if="${visibility == 0}">비공개</td>
+                    //                  <td else="${visibility == 1}">공개중</td>`;
+                    // activitycode += `<td><button type="button" class="btn btn-danger" onclick="location.href='/admin_delete_activity';">삭제</button></td>`;
+                    activitycode += `<td><a href="/admin_delete_activity?id=${actid}"><button type="button" class="btn btn-danger">삭제</button></a></td>`;
+                    activitycode += `</tr>`;
+                }
+                activitycode += "</table>"
+                document.getElementById("v").innerHTML = activitycode;
+            })
+        });
+    </script>
+
+
+
+
+
+    <script>
+        const answerBtn = document.getElementById(ccc);
+        ccc.addEventListener("click", () => {
+
+            const data = axios({
+                url: 'adminAnswer',
+                method: 'get',
+            });
+            data.then((res) => {
+                console.log(res);
+                const answerdata = res;
+
+                let answercode = "<table id='ghij' border=5px;>";
+                    answercode += "<tr><th>작성날짜</th><th>댓글내용</th><th>삭제하기</th></tr>"
+                const answerlist = answerdata.data;
+                console.log(answerlist);
+                for (let key in answerlist) {
+                    const ghi = answerlist[key];
+                    var dtt = new Date(ghi.createDate);
+                    const createDate = dtt.getFullYear() + '년 ' + dtt.getMonth() + '월 ' + dtt.getDate() + '일 ' + dtt.getHours() + ':'+ dtt.getMinutes();
+                    const content = ghi.content;
+                    const actid = ghi.id;
+                    answercode += `<tr>`
+                    answercode += `<td>${createDate}</td>`;
+                    answercode += `<td>${content}</td>`;
+                    answercode += `<td><a href="/admin_delete_answer?id=${actid}"><button type="button" class="btn btn-danger">삭제</button></a></td>`;
+                    answercode += `</tr>`;
+                }
+                answercode += "</table>"
+                document.getElementById("v").innerHTML = answercode;
+            })
+        });
+    </script>
+    
+</body>
+
+
+</html>

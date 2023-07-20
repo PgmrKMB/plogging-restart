@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>PLOGGING</title>
+    <!-- Theme Made By www.w3schools.com -->
+    <title>Bootstrap Theme Company Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="http://localhost/images/ecology.png">
+
+    <style>
+        body {
+            font: 400 15px Lato, sans-serif;
+            line-height: 1.8;
+            color: #818181;
+        }
+
+        h2 {
+            font-size: 24px;
+            text-transform: uppercase;
+            color: #303030;
+            font-weight: 600;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        h4 {
+            font-size: 19px;
+            line-height: 1.375em;
+            color: #303030;
+            font-weight: 400;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* .container-fluid {
+            padding: 60px 50px;
+        } */
+
+        .bg-grey {
+            background-color: #f6f6f6;
+        }
+
+        .logo-small {
+            color: #f4511e;
+            font-size: 50px;
+        }
+
+        .logo {
+            color: #f4511e;
+            font-size: 200px;
+        }
+
+        .thumbnail {
+            padding: 0 0 15px 0;
+            border: none;
+            border-radius: 0;
+            width: 300px;
+            height: 250px;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            max-height: 200px;
+            margin-bottom: 10px;
+        }
+
+        .carousel-control.right,
+        .carousel-control.left {
+            background-image: none;
+            color: #f4511e;
+        }
+
+        .carousel-indicators li {
+            border-color: #f4511e;
+        }
+
+        .carousel-indicators li.active {
+            background-color: #f4511e;
+        }
+
+        .item h4 {
+            font-size: 19px;
+            line-height: 1.375em;
+            font-weight: 400;
+            font-style: italic;
+            margin: 70px 0;
+        }
+
+        .item span {
+            font-style: normal;
+        }
+
+        .panel {
+            border: 1px solid #f4511e;
+            border-radius: 0 !important;
+            transition: box-shadow 0.5s;
+        }
+
+        .panel:hover {
+            box-shadow: 5px 0px 40px rgba(0, 0, 0, .2);
+        }
+
+        .panel-footer .btn:hover {
+            border: 1px solid #f4511e;
+            background-color: #fff !important;
+            color: #f4511e;
+        }
+
+        .panel-heading {
+            color: #fff !important;
+            background-color: gainsboro !important;
+            padding: 0px;
+            border-bottom: 1px solid transparent;
+            border-top-left-radius: 100px;
+            border-top-right-radius: 100px;
+            border-bottom-left-radius: 100px;
+            border-bottom-right-radius: 100px;
+        }
+
+        .panel-footer {
+            background-color: white !important;
+        }
+
+        .panel-footer h3 {
+            font-size: 32px;
+        }
+
+        .panel-footer h4 {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .panel-footer .btn {
+            margin: 15px 0;
+            background-color: #f4511e;
+            color: #fff;
+        }
+
+        .navbar {
+            margin-bottom: 0;
+            background-color: #16ad1b;
+            z-index: 9999;
+            border: 0;
+            font-size: 12px !important;
+            line-height: 1.42857143 !important;
+            letter-spacing: 4px;
+            border-radius: 0;
+            font-family: Montserrat, sans-serif;
+        }
+
+        .navbar li a,
+        .navbar .navbar-brand {
+            color: #fff !important;
+        }
+
+        .navbar-nav li a:hover,
+        .navbar-nav li.active a {
+            color: #f4511e !important;
+            background-color: #fff !important;
+        }
+
+        .navbar-default .navbar-toggle {
+            border-color: transparent;
+            color: #fff !important;
+        }
+
+        footer .glyphicon {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #f4511e;
+        }
+
+        .slideanim {
+            display: flex;
+            justify-content: center;
+            border: #f6f6f6;
+        }
+
+        .slide {
+            animation-name: slide;
+            -webkit-animation-name: slide;
+            animation-duration: 1s;
+            -webkit-animation-duration: 1s;
+            visibility: visible;
+        }
+
+        .bottombox {
+            display: flex; 
+            flex-direction: column;  
+            justify-content: space-evenly;
+            
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            width: 420px;
+            height: auto;
+            border: solid 5px gainsboro;
+        }
+        .memolike {
+            display: flex;
+            align-items: center;
+        }
+
+
+
+
+        @keyframes slide {
+            0% {
+                opacity: 0;
+                transform: translateY(70%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0%);
+            }
+        }
+
+        @-webkit-keyframes slide {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateY(70%);
+            }
+
+            100% {
+                opacity: 1;
+                -webkit-transform: translateY(0%);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .col-sm-4 {
+                text-align: center;
+                margin: 25px 0;
+            }
+
+            .btn-lg {
+                width: 100%;
+                margin-bottom: 35px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .logo {
+                font-size: 150px;
+            }
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand" style="padding-top: 5px;"><img src="images/ecology.png"
+                        style="width: 40px;"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/#about">ABOUT</a></li>
+                    <li><a href="/#services">SERVICE</a></li>
+                    <li><a href="/#campaign">CAMPAIGN</a></li>
+                    <li><a href="/#feed">FEED</a></li>
+                    <li><a th:href="@{/mypage_new}" th:if="${session.user != null}">MY PAGE</a></li>
+                    <li><a th:href="@{/signout}" th:if="${session.user != null}"><span
+                                class="glyphicon glyphicon-log-in"></span>
+                            [[${session.user.nickname}]]님 Logout</a></li>
+                    <li><a th:href="@{/signin}" th:unless="${session.user != null}"><span
+                                class="glyphicon glyphicon-log-out"></span> Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <br><br><br>
+
+
+
+    <!-- <지도> -->
+    <!-- <지도> -->
+    <div style="display: flex; justify-content: center;">
+        <!-- <div id="map" style="width:70%; height:500px; border-radius: 25px;"></div> -->
+        <div id="map"
+            style="max-width: 1000px; width:90%; height:450px; border-radius: 5px; border: solid 3px gainsboro;"></div>
+    </div>
+    <br><br>
+    <hr><br>
+
+
+
+    <div id="picture">
+        <!-- <h2>플로깅 사진</h2> -->
+        <br>
+
+        <div class="bottombox" style="display: flex; flex-direction: column;  justify-content: space-evenly;">
+            <div class="row text-center slideanim">
+                <!-- <div style="width: 500px; height: 200px; display: flex; justify-content: center;"> -->
+
+                <div class="thumbnail" style="display: flex inline-block;">
+
+                    <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1"
+                        style="background-color: white; border: #16ad1b;"><img th:src="@{/nawarapic(id=${param.actid})}"
+                            style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a>
+                </div>
+
+
+                <div class="thumbnail">
+                    <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2"
+                        style="background-color: white; border: #16ad1b ;"><img
+                            th:src="@{/nawarapic2(id=${param.actid})}"
+                            style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a>
+                </div>
+
+                <div class="thumbnail">
+                    <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal3"
+                        style="background-color: white; border: #16ad1b ;"><img
+                            th:src="@{/nawarapic3(id=${param.actid})}"
+                            style="width:100%; padding: 10px; margin-left: 8px; margin-right: 8px;"></a>
+                </div>
+            </div>
+            <div class = "memolike" display = "flex; " style="justify-content: center;">
+            <div class="box" style="max-width: 90%;">
+                <h4 th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></h4>
+                <strong>
+                    <h4 th:text="${'[ '+act.actName+' ]'}"></h4>
+                </strong>
+                <h4>[ 총 거리 ] &nbsp;<span th:text="${act.actDistance}"></span></h4>
+                <h4>[ 총 시간 ] &nbsp;<span th:text="${act.actTime}"></span></h4>
+                <h4 th:text="${act.actMemo}"></h4> <br>
+                <div th:if="${session.user != null}">
+                    <div th:if="${session.user.nickname} == ${act.user.nickname}" class="update"
+                        style="display: flex; justify-content: center;">
+                        <div bottonbox style="display: flex;">
+                            <a th:href="@{/activityupdate(actid=${act.id})}"><button th:text="활동기록수정"
+                                    class="btn"></button></a> &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="like1" type="button" class="btn"
+                                th:value="|💚 (${#lists.size(act.actLikes)})|" />
+                        </div>
+                    </div>
+                </div><br>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <br>
+    <hr>
+
+    <div>
+        <h5 class="border-bottom my-3 py-2" th:text="${#lists.size(act.answers)} + '개의 답변이 있습니다.'"></h5>
+        <th:block th:each="answer : ${act.answers}">
+            <div style=" margin: 15px; width: 370px; height: 120px;">
+                <div th:text="|💬 ${answer.content} |" style="word-break: break-all;"></div>
+                <div th:text="|작성자 : ${answer.user.nickname}|"></div>
+                <div th:text="|작성일 : ${#dates.format(answer.createDate, 'MM-dd HH:mm')}|"></div>
+                <div th:if="${session.user != null}">
+                    <div th:if="${session.user.nickname} == ${answer.user.nickname}" class="my-3">
+                        <a th:href="@{/delanswer(id=${answer.id})}">삭제</a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </th:block>
+        <form action="/actanswer/create" method="post" class="my-3">
+            <input type="hidden" name="actid" th:value="${act.id}">
+            <input type="hidden" th:value="${param.actid}"> <!--  왜 쓰는지 도통 모르겠음. 이름도 없고. -->
+            <div th:if="${session.user != null}">
+                <div class="form-group">
+                    <textarea name="content" id="content" class="form-control" rows="2"></textarea>
+                </div>
+                <input type="submit" value="댓글등록" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+
+
+
+    <!-- Modal 1 -->
+    <div id="myModal1" class="modal fade" role="dialog">
+        <br><br><br><br>
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div> -->
+                <div class="modal-body">
+                    <img style="max-width: 100%;" th:src="@{/nawarapic(id=${param.actid})}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div id="myModal2" class="modal fade" role="dialog">
+        <br><br><br><br>
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div> -->
+                <div class="modal-body">
+                    <img style="max-width: 100%;" th:src="@{/nawarapic2(id=${param.actid})}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div id="myModal3" class="modal fade" role="dialog">
+        <br><br><br><br>
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div> -->
+                <div class="modal-body">
+                    <img style="max-width: 100%;" th:src="@{/nawarapic3(id=${param.actid})}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2be20ca0a50df1e82e1ef6c4f832ca69"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        console.log('[[${param.actid}]]');
+
+        var ggg;
+        var gh = [];
+
+        const data = axios({
+            url: 'linetest?actid=[[${param.actid}]]',
+            method: 'get',
+        })
+            .then(function (res) {
+                ggg = res.data;
+                console.log(ggg);
+                console.log(ggg[0].La);
+                console.log(ggg.length);
+
+                for (let i = 0; i < ggg.length; i++) {
+                    const aaa = new kakao.maps.LatLng(ggg[i].Ma, ggg[i].La);
+                    console.log(aaa);
+                    gh.push(aaa);
+                }
+
+
+
+                var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                    mapOption = {
+                        center: new kakao.maps.LatLng(ggg[0].Ma, ggg[0].La), // 지도의 중심좌표
+                        level: 6 // 지도의 확대 레벨
+                    };
+
+                var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+
+
+                // 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
+                console.log(gh);
+                var linePath = gh;
+
+                // 지도에 표시할 선을 생성합니다
+                var polyline = new kakao.maps.Polyline({
+                    path: linePath, // 선을 구성하는 좌표배열 입니다
+                    strokeWeight: 4, // 선의 두께입니다 
+                    strokeColor: '#1b87dd', // 선의 색깔입니다
+                    strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+                    strokeStyle: 'solid' // 선의 스타일입니다
+                });
+
+                // 지도에 선을 표시합니다 
+                polyline.setMap(map);
+
+
+
+                var markerPosition = new kakao.maps.LatLng(ggg[0].Ma, ggg[0].La);
+
+                // 마커를 생성합니다
+                var marker = new kakao.maps.Marker({
+                    position: markerPosition
+                });
+
+                // 마커가 지도 위에 표시되도록 설정합니다
+                marker.setMap(map);
+
+
+                var iwContent = '<div style="padding:5px;">시작위치입니다!</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                    iwPosition = new kakao.maps.LatLng(ggg[0].Ma, ggg[0].La); //인포윈도우 표시 위치입니다
+
+                // 인포윈도우를 생성합니다
+                var infowindow = new kakao.maps.InfoWindow({
+                    position: iwPosition,
+                    content: iwContent
+                });
+
+                // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+                infowindow.open(map, marker);
+
+
+
+
+                var markerPosition = new kakao.maps.LatLng(ggg[ggg.length - 1].Ma, ggg[ggg.length - 1].La);
+
+                // 마커를 생성합니다
+                var marker = new kakao.maps.Marker({
+                    position: markerPosition
+                });
+
+                // 마커가 지도 위에 표시되도록 설정합니다
+                marker.setMap(map);
+
+
+                var iwContent = '<div style="padding:5px;">종료위치입니다!</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                    iwPosition = new kakao.maps.LatLng(ggg[ggg.length - 1].Ma, ggg[ggg.length - 1].La); //인포윈도우 표시 위치입니다
+
+                // 인포윈도우를 생성합니다
+                var infowindow = new kakao.maps.InfoWindow({
+                    position: iwPosition,
+                    content: iwContent
+                });
+
+                // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+                infowindow.open(map, marker);
+
+
+            });
+
+    </script>
+
+
+    <script>
+        const likeHeart = document.getElementById("like1")
+        likeHeart.addEventListener("click", () => {
+
+            const actid = '[[${param.actid}]]';
+            const formData = new FormData();
+            formData.append('actid', actid);
+
+            const data = axios({
+                url: 'actlike',
+                method: 'post',
+                data: formData
+            })
+                .then(function (result) {
+                    // alert("좋아요 ~")
+                    window.location.href = "/mapline?actid=[[${param.actid}]]"
+                })
+                .catch(function (error) {
+                    // alert("활동 저장이 정상적으로 되지 않았습니다.")
+                    // console.log(error.message);
+                });
+        });
+
+
+    </script>
+
+</body>
+
+</html>

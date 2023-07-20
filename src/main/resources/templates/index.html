@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+
+  <div th:replace="common/head"></div>
+
+
+
+  <div class="jumbotron text-center">
+    <h1>Plogging</h1>
+    <p>We run for Earth</p>
+    <br>
+    <form>
+      <div class="input-group">
+        <div class="input-group-btn">
+          <a th:href="@{/activityform}"><button type="button" class="btn btn-default btn-lg">플로깅시작</button></a>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Container (About Section) -->
+  <div id="about" class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8">
+        <h2>플로깅(Plogging)이란?</h2>
+        <h4>‘이삭을 줍는다’는 뜻인 스웨덴어 ‘plocka upp’과 영어 ‘jogging(조깅)’의 합성어로 2016년, 환경보호를 위해 스웨덴에서 처음 시작된 환경보호운동입니다.
+          플로깅은 조깅하면서 쓰레기를 줍는 행동으로, 조깅이라는 대중적 운동(exercise)에 환경보호 운동(movement)이 더해진 개인이 자발적으로 실천할 수 있는 환경보호운동을 뜻합니다.
+
+          </p>
+          <!-- <br><button class="btn btn-default btn-lg">Get in Touch</button> -->
+      </div>
+      <div class="col-sm-4">
+         <img src="images/plogging2.png" width="250px;">
+      <!--  <span class="glyphicon glyphicon-globe logo slideanim"></span> -->
+      </div> 
+    </div>
+  </div>
+
+  <div class="container-fluid bg-grey">
+    <div class="row">
+      <img src="images/ecology.png" style="width: 230px; height: 230px; margin-right: 0px;   margin-bottom: 40px;" >
+      <!-- <div class="col-sm-4">
+        <span class="glyphicon glyphicon-globe logo slideanim"></span>
+      </div> -->
+      <div class="col-sm-8">
+        <h2>플로깅 서비스란?</h2>
+        <h4><strong></strong>기록과 공유, 소통에 기반을 둔 'SNS 기능'과 '러닝어플의 기능'을 결합한 서비스입니다. 자신의 운동내용을 지도(현재 위치, 경로 표시)와
+          사진, 기록(거리, 시간)으로 저장할 수 있게 하고, 이를 공유할 수 있는 게시판과 댓글 기능을 활용하여 개인 단위의 자발적인 환경보호활동을 장려합니다.</h4><br>
+        <p><strong></strong> </p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="news" class="container-fluid text-center bg-grey" style="padding-top: 50px;">
+    <div style="display: flex; justify-content: center;">
+      <h2>PLOGGING NEWS</h2>
+    </div>
+    <!-- <h5>( 출처 : NAVER NEWS )</h5> -->
+    <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+        <li data-target="#myCarousel" data-slide-to="5"></li>
+        <li data-target="#myCarousel" data-slide-to="6"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox" id="nvnewslgh">
+        <div class="item active">
+          <h4>플로깅으로 검색된 최신 뉴스를 전달해드립니다.<br><span>
+              <h6>( 출처 : NAVER NEWS )</h6>
+            </span></h4>
+        </div>
+       
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+
+  
+
+  <div id="feed" class="container-fluid text-center bg-grey">
+
+    <h2>플로깅 피드</h2>
+    <br><br>
+    <div class="row text-center slideanim slide">
+      <div class="col-sm-4" th:each="act : ${publist}" style="width: 420px; height: auto;">
+        <div class="thumbnail"> 
+          <img th:src="@{/nawarapic(id=${act.id})}" style="width: auto;" onerror="this.src='/images/runday2.jpg'"
+            alt="run2">
+            <div class="bodywrap">
+              <div class="panel-body">
+                <p th:text="${#dates.format(act.createDate, 'yyyy년 MM월 dd일 HH:mm')}"></p>
+                <strong>
+                  <p th:text="${'[ '+act.actName+' ]'}"></p>
+                </strong>
+              <p>총 거리 : <span th:text="${act.actDistance}"></span></p>
+              <p>총 시간 : <span th:text="${act.actTime}"></span></p>
+              <!-- <p style="overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            /* width: 90%; */
+            height: 20px;">
+            메모 : <span th:text="${act.actMemo}"></span></p> -->
+              <br>
+              <div class="box">
+                <div class="panel-heading"><strong>💚([[${#lists.size(act.actLikes)}]])</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a th:href="@{mapline(actid=${act.Id})}">🔍<b th:text="상세보기"></b></a>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  
+
+  <br><br>
+
+
+
+
+
+
+
+  <!-- Container (Portfolio Section) -->
+  <div id="campaign" class="container-fluid text-center">
+    <h2>플로깅 캠페인</h2><br>
+    <div class="row text-center slideanim">
+      
+      <div class="campaign_content"><a href="https://www.ajunews.com/view/20220524181919173">
+        <div class="thumbnails">
+          <img src="images/ansan.png">
+          <p><strong>안산도시공사</strong></p>
+          <p>결식아동 돕기 착한발걸음 플로깅 참가자 뽑아</p>
+        </div>
+      </div></a>
+
+      <div class="campaign_content"><a href="https://www.khan.co.kr/national/health-welfare/article/202205191649001">
+        <div class="thumbnails">
+          <img src="images/jeju.jpg">
+          <p><strong>광동제약 X 제주올레</strong></p>
+          <p>제주 환경정화 프로젝트 참가자 모집</p>
+        </div>
+      </div></a>
+    
+      <div class="campaign_content" id="campaignimg"><a href="http://www.apparelnews.co.kr/news/news_view/?idx=198296">
+        <div class="thumbnails">
+          <img src="images/campaign3.jpg" alt="Ansan">
+          <p><strong>브라더인터내셔널코리아</strong></p>
+          <p>환경의 달 기념 '플로깅 챌린지' 진행</p>
+        </div>
+      </div></a>
+    </div>
+  </div>
+  <br><br><hr>
+
+
+  <!-- Container (Services Section) -->
+  <div id="services" class="container-fluid text-center">
+    <h2>제공하는 서비스</h2>
+    <br>
+    <div class="row slideanim">
+      <div class="col-sm-4">
+        <img src="images/map.png">
+        <h4>경로 기록</h4>
+      </div>
+      <div class="col-sm-4">
+        <img src="images/heart.png">
+        <h4>SNS</h4>
+      </div>
+      <div class="col-sm-4">
+        <img src="images/news.png">
+        <h4>플로깅 뉴스</h4>
+      </div>
+    </div>
+    <br><br>
+    <div class="row slideanim">
+      <div class="col-sm-4">
+        <img src="images/leaf.png">
+        <h4>환경보호 캠페인</h4>
+      </div>
+      <div class="col-sm-4">
+        <img src="images/stopwatch.png">
+        <h4>스탑워치</h4>
+      </div>
+      <div class="col-sm-4">
+        <img src="images/pic2.png">
+        <h4 style="color:#303030;">사진기록</h4>
+      </div>
+    </div>
+  </div>
+
+
+
+  
+
+
+  
+
+
+
+  <!-- Container (Contact Section) -->
+  <div id="contact" class="container-fluid bg-grey">
+    <h2 class="text-center">관리자에게 연락하기</h2>
+    <div class="row">
+      <div class="col-sm-5">
+        <p>이름과 이메일을 적어 보내주시면 연락드리겠습니다.</p>
+        <p><span class="glyphicon glyphicon-map-marker"></span> Sejong, KOREA</p>
+        <p><span class="glyphicon glyphicon-phone"></span> +00 1515151515</p>
+        <p><span class="glyphicon glyphicon-home"></span><a href="https://github.com/kdtchacha/plogging"
+            style="text-decoration: none; color: #818181;"> github </a></p>
+      </div>
+      <div class="col-sm-7">
+        <form action="/contact" method="post">
+          <div class="row">
+            <div class="col-sm-6 form-group">
+              <input class="form-control" id="name" name="subject" placeholder="이름" type="text" required>
+            </div>
+            <div class="col-sm-6 form-group">
+              <input class="form-control" id="email" name="email" placeholder="보내는 사람 이메일 주소" type="email" required>
+            </div>
+          </div>
+          <textarea class="form-control" id="comments" name="content" placeholder="내용" rows="5"></textarea><br>
+          <div class="row">
+            <div class="col-sm-12 form-group">
+              <button class="btn btn-default pull-right" type="submit" id="emailsend">보내기</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <footer class="container-fluid text-center">
+    <a href="#myPage" title="To Top">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+    <!-- <p>Bootstrap Theme Made By <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p> -->
+  </footer>
+
+  <script>
+    $(document).ready(function () {
+      // Add smooth scrolling to all links in navbar + footer link
+      $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+          // Prevent default anchor click behavior
+          event.preventDefault();
+
+          // Store hash
+          var hash = this.hash;
+
+          // Using jQuery's animate() method to add smooth page scroll
+          // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 900, function () {
+
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+          });
+        } // End if
+      });
+
+      $(window).scroll(function () {
+        $(".slideanim").each(function () {
+          var pos = $(this).offset().top;
+
+          var winTop = $(window).scrollTop();
+          if (pos < winTop + 600) {
+            $(this).addClass("slide");
+          }
+        });
+      });
+    })
+  </script>
+
+  <script src="http://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+
+    const data = axios({
+      url: 'navernews?query=플로깅',
+      method: 'get',
+    });
+    data.then((res) => {
+
+      console.log(res);
+
+      const newsdata = res;
+
+      // <div class="item active">
+      //     <h4>"This company is the best. I am so happy with the result!"<br><span>Michael Roe,
+      //         Vice President, Comment
+      //         Box</span></h4>
+      //   </div>
+
+
+      let newscode = "";
+      const newslist = newsdata.data.items;
+      console.log(newslist);
+      for (let key in newslist) {
+        const abc = newslist[key];
+        const title = abc.title;
+        const pubdate = abc.pubDate;
+        const link = abc.link;
+        // const desc = abc.description;
+        // const publishedAt = abc.pubDate;
+
+        newscode += '<div class="item">'
+        newscode += `<h4><a href="${link}">${title}</a><br>`;
+        newscode += `<span><h5>${pubdate}</h5></span>`;
+        newscode += '</h4>'
+        newscode += '</div>';
+      }
+
+      document.getElementById("nvnewslgh").innerHTML += newscode;
+
+    })
+
+
+  </script>
+
+
+
+</body>
+
+</html>
